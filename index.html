@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>For Zuzu 🎀</title>
-        <link rel="stylesheet" href="style.css">
-        <script type="text/javascript" src="script.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="icon" href="favicon.ico" type="Img/favicon.ico">
-    </head>
-    <body>
-        <span style="color:rgb(255, 255, 255)" onclick="changeOnFooter()">
-            Instructions
-        </span>
-        <div class="main-Div"> 
-           
-            <div class="Character" >
-                <img src="Img/white_rabbit.png" id="chara-img"style="width:100%;height:100%;object-fit:contain;">
-            </div>
-            <div class="clot-div" ondragenter="dragenter()" >
-                <img src="Img/Clean.png" id="chara-clo"style="width:100%;height:100%;object-fit:contain;" >
-            </div>
-            <div class="Character-clothes">
-                <img src="Img/Dress_1.png" id="chara-clothes"style="width:100%;height:100%;object-fit:contain;" draggable="true" ondragstart="drag()" >
-            </div>
-            <div class="Character-color">
-                <Button class="change-color-White" onclick="changeChcolor('white')"> </Button>
-                <Button class="change-color-black" onclick="changeChcolor('black')"> </Button>
-                <Button class="change-color-pink" onclick="changeChcolor('pink')"> </Button>
-                <Button class="change-color-yellow" onclick="changeChcolor('yellow')"> </Button>
-                <Button class="change-color-blue" onclick="changeChcolor('blue')"> </Button>
-                <Button class="change-color-purple" onclick="changeChcolor('purple')"> </Button>
-            </div>
-            
-            <div class="clothes-change">
-                <i class="fa fa-share fa-flip-horizontal fa-3x" id="icon_a" aria-hidden="true" onclick="downclothesBotton()"></i>
-                <i class="fa fa-share fa-3x" aria-hidden="true" onclick="upclothesBotton()"></i>
-            </div>
-        </div>
-        <div class="footer">
-            
-        
-        </div>
-        <div class="explanation" id="onoff">
-            If you click on any of the 6 colors, the color of the rabbit will change.,<br> Drop the clothes to the rabbit and wear them.
-            <i class="fa fa-times" aria-hidden="true" onclick="changeOffFooter()"></i>
-        </div>
-    </body>
+    <head>
+        <title>For Zuzu 🎀</title>
+        <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="script.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="favicon.ico" type="Img/favicon.ico">
+    </head>
+    <body>
+        <span style="color:rgb(255, 255, 255)" onclick="changeOnFooter()">
+            Instructions
+        </span>
+        <div class="main-Div">
+            <div class="Character">
+                <img src="Img/white_rabbit.png" id="chara-img" style="width:100%;height:100%;object-fit:contain;">
+            </div>
+            <div class="clot-div" ondragenter="dragenter()">
+                <img src="Img/Clean.png" id="chara-clo" style="width:100%;height:100%;object-fit:contain;">
+            </div>
+            <div class="Character-clothes">
+                <img src="Img/Dress_1.png" id="chara-clothes" style="width:100%;height:100%;object-fit:contain;" draggable="true" ondragstart="drag()" ontouchstart="touchDragStart(event)" ontouchmove="touchDragMove(event)" ontouchend="touchDragEnd(event)">
+            </div>
+            <div class="Character-color">
+                <Button class="change-color-White" onclick="changeChcolor('white')"> </Button>
+                <Button class="change-color-black" onclick="changeChcolor('black')"> </Button>
+                <Button class="change-color-pink" onclick="changeChcolor('pink')"> </Button>
+                <Button class="change-color-yellow" onclick="changeChcolor('yellow')"> </Button>
+                <Button class="change-color-blue" onclick="changeChcolor('blue')"> </Button>
+                <Button class="change-color-purple" onclick="changeChcolor('purple')"> </Button>
+            </div>
+            <div class="clothes-change">
+                <i class="fa fa-share fa-flip-horizontal fa-3x" id="icon_a" aria-hidden="true" onclick="downclothesBotton()"></i>
+                <i class="fa fa-share fa-3x" aria-hidden="true" onclick="upclothesBotton()"></i>
+            </div>
+        </div>
+        <div class="footer"></div>
+        <div class="explanation" id="onoff">
+            If you click on any of the 6 colors, the color of the rabbit will change.<br> Drop the clothes to the rabbit and wear them.
+            <i class="fa fa-times" aria-hidden="true" onclick="changeOffFooter()"></i>
+        </div>
+
+        <script>
+            let touchItem = null;
+
+            function touchDragStart(event) {
+                event.preventDefault();
+                touchItem = event.target;
+            }
+
+            function touchDragMove(event) {
+                if (!touchItem) return;
+                let touch = event.touches[0];
+                touchItem.style.position = "absolute";
+                touchItem.style.left = touch.pageX - (touchItem.width / 2) + "px";
+                touchItem.style.top = touch.pageY - (touchItem.height / 2) + "px";
+            }
+
+            function touchDragEnd(event) {
+                touchItem = null;
+            }
+        </script>
+    </body>
 </html>
